@@ -1,26 +1,43 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState} from 'react';
 import './App.css';
+import Counter from "./Counter/Counter";
+import CounterSettings from "./CounterSettings/CounterSettings";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    let [counter, setCounter] = useState<number>(0);
+    let [MinVal, setMinVal] = useState<number>(0);
+    let [MaxVal, setMaxVal] = useState<number>(10);
+    let [error, setError] = useState<string>('');
+
+
+    // const setCounterValues = (max: number, min: number) => {
+    //
+    // }
+
+    const setSettings = (min: number, max: number) => {
+        setMinVal(min)
+        setMaxVal(max)
+        setCounter(counter)
+    }
+
+    return (
+        <div className="App">
+            <CounterSettings
+                MinVal={MinVal}
+                MaxVal={MaxVal}
+                setError={setError}
+                setSettings={setSettings}
+            />
+            <Counter
+                MinVal={MinVal}
+                MaxVal={MaxVal}
+                counter={counter}
+                setCounter={setCounter}
+                error={error}
+            />
+
+        </div>
+    );
 }
 
 export default App;
