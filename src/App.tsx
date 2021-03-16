@@ -6,27 +6,26 @@ import CounterSettings from "./CounterSettings/CounterSettings";
 function App() {
     let [counter, setCounter] = useState<number>(0);
     let [MinVal, setMinVal] = useState<number>(0);
-    let [MaxVal, setMaxVal] = useState<number>(10);
+    let [MaxVal, setMaxVal] = useState<number>(2);
     let [error, setError] = useState<string>('');
 
-
-    // const setCounterValues = (max: number, min: number) => {
-    //
-    // }
 
     const setSettings = (min: number, max: number) => {
         setMinVal(min)
         setMaxVal(max)
+        setError('')
         setCounter(counter)
     }
 
     return (
         <div className="App">
             <CounterSettings
+                setCounter={setCounter}
                 MinVal={MinVal}
                 MaxVal={MaxVal}
                 setError={setError}
                 setSettings={setSettings}
+                error={error}
             />
             <Counter
                 MinVal={MinVal}
